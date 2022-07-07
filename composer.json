@@ -1,0 +1,59 @@
+{
+    "name": "pezhvak/laravel-translator",
+    "description": "A package to finally be able to localize projects without worrying about updating strings.",
+    "keywords": [
+        "Pezhvak",
+        "laravel",
+        "laraveltranslator"
+    ],
+    "homepage": "https://github.com/pezhvak/laraveltranslator",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Pezhvak",
+            "email": "pezhvakimv@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "spatie/laravel-package-tools": "^1.9.2",
+        "illuminate/contracts": "^9.0",
+        "deeplcom/deepl-php": "^v0.4.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Pezhvak\\LaravelTranslator\\": "src",
+            "Pezhvak\\LaravelTranslator\\Database\\Factories\\": "database/factories"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Pezhvak\\LaravelTranslator\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "analyse": "vendor/bin/phpstan analyse",
+        "test": "vendor/bin/pest",
+        "test-coverage": "vendor/bin/pest --coverage",
+        "format": "vendor/bin/php-cs-fixer fix --allow-risky=yes"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Pezhvak\\LaravelTranslator\\LaravelTranslatorServiceProvider"
+            ],
+            "aliases": {
+                "LaravelTranslator": "Pezhvak\\LaravelTranslator\\Facades\\LaravelTranslator"
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
