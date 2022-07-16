@@ -13,43 +13,42 @@ You can install the package via composer:
 composer require pezhvak/laravel-translator
 ```
 
-You can publish and run the migrations with:
-
-```bash
-php artisan vendor:publish --tag="laravel-translator-migrations"
-php artisan migrate
-```
-
 You can publish the config file with:
 
 ```bash
 php artisan vendor:publish --tag="laravel-translator-config"
 ```
 
-This is the contents of the published config file:
+make sure you add these environment variables to your `.env` file.
 
-```php
-return [
-];
-```
-
-Optionally, you can publish the views using
-
-```bash
-php artisan vendor:publish --tag="laravel-translator-views"
+```dotenv
+DEEPL_AUTH_KEY=<put your deepl token here>
 ```
 
 ## Usage
 
-```php
-$laravel_translator = new Pezhvak\LaravelTranslator();
-echo $laravel_translator->echoPhrase('Hello, Pezhvak/laravel-translator!');
+First migrate the database:
+
+```shell
+php artisan migrate
 ```
 
-## Testing
+Now you can run the following command to detect changes and translate strings:
 
-```bash
-composer test
+```shell
+php artisan translator:translate
+```
+
+Sometimes you want to translate only few locales, you can do this by providing them in the first parameter (separate them by comma if you want to provide multiple locales):
+
+```shell
+php artisan translator:translate en,fa
+```
+
+If you add a new locale, it won't get translated since there is no changed string in the default language, to do this force the translation:
+
+```shell
+php artisan translator:translate [new_locale] --force
 ```
 
 ## Changelog

@@ -96,12 +96,14 @@ class LaravelTranslator
         return $this;
     }
 
-    public function translate(array $to_locales = []): static
+    public function translate(array $to_locales = [], $force_all = false): static
     {
         # fetching strings which needs translation
         $needs_translation = TranslationString::query()
             ->where('locale', $this->getDefaultLocale())
-            ->where('needs_translation', true)
+            ->when(!$force_all, function ($query) {
+                $query->where('needs_translation', true);
+            })
             ->get();
         if ($needs_translation->count() == 0) return $this;
 
