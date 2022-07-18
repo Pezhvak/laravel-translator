@@ -15,7 +15,7 @@ class LaravelTranslatorCommand extends Command
     {
         $locals = $this->argument('locale')
             ? explode(',', $this->argument('locale'))
-            : null;
+            : [];
         $this->comment('Detecting...');
         $lt = new LaravelTranslator();
         $lt->detectChanges();
