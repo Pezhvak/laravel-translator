@@ -123,7 +123,7 @@ class LaravelTranslator
                             'file'   => $translation_chunk[$index]->file,
                             'key'    => $translation_chunk[$index]->key,
                         ], [
-                            'value'             => $translation,
+                            'value'             => html_entity_decode($translation),
                             'needs_translation' => false,
                         ]);
                     } catch (\Exception $exception) {
